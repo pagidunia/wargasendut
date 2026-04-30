@@ -21,9 +21,8 @@ RUN npm ci --omit=dev
 
 COPY --from=builder /app/wargasendut/.next ./.next
 
-# Create public folder if it doesn't exist
-RUN mkdir -p public
-COPY wargasendut/public ./public || true
+# Copy public folder if it exists
+RUN mkdir -p public && cp -r wargasendut/public . 2>/dev/null || true
 
 EXPOSE 3000
 
