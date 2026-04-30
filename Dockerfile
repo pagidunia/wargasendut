@@ -6,7 +6,7 @@ WORKDIR /app/wargasendut
 COPY wargasendut/package*.json ./
 RUN npm ci
 
-COPY wargasendut . .
+COPY wargasendut .
 RUN npm run build
 
 # Runtime stage
@@ -21,8 +21,8 @@ RUN npm ci --omit=dev
 
 COPY --from=builder /app/wargasendut/.next ./.next
 
-# Copy public folder if it exists
-RUN mkdir -p public && cp -r wargasendut/public . 2>/dev/null || true
+# Copy public folder from builder if it exists
+COPY --from=builder /app/wargasendut/public ./public
 
 EXPOSE 3000
 
