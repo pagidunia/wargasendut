@@ -1,0 +1,31 @@
+{
+  "name": "wargasendut",
+  "version": "1.0.0",
+  "description": "Aplikasi Manajemen Iuran Warga RT 02 RW 02",
+  "author": "Admin",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "setup-db": "npx tsx scripts/setup-db.ts"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "iron-session": "^8.0.3",
+    "next": "16.2.4",
+    "pg": "^8.20.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/pg": "^8.20.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tsx": "^4.7.1",
+    "typescript": "^5"
+  }
+}

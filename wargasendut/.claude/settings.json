@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/pagi/Downloads/project\\\\ nextJS/wargasendut/src/app/api/dashboard/**)",
+      "Bash(psql -U postgres -d wargasendut -c \"\\\\d iuranwarga\")"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}
