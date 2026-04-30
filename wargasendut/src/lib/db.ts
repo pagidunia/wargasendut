@@ -1,24 +1,21 @@
 import { Pool, QueryResult } from 'pg';
 
-const globalForDb = globalThis as unknown as {
-  db: Pool | undefined;
-};
+let pool: Pool | null = null;
 
-const pool =
-  globalForDb.db ??
-  new Pool({
-    connectionString: process.env.DATABASE_URL ?? 'postgresql://postgres@localhost:5432/wargasendut',
-  });
-
-if (process.env.NODE_ENV !== 'production') {
-  globalForDb.db = pool;
+function getPool(): Pool {
+    if (!pool) {
+          pool = new Pool({
+                  connectionString: process.env.DATABASE_URL,
+          });
+    }
+    return pool;
 }
 
 const db = {
-  async execute<T>(query: string, params?: any[]): Promise<[T, any]> {
-    const result: QueryResult = await pool.query(query, params);
-    return [result.rows as T, result];
-  },
+    async execute<T>(query: string, params?: any[]): Promise<[T, any]> {
+          const result: QueryResult = await getPool().query(query, params);
+          return [result.rows as T, result];
+    },
 };
 
 export default db;
