@@ -7,11 +7,7 @@ const globalForDb = globalThis as unknown as {
 const pool =
   globalForDb.db ??
   new Pool({
-    host: process.env.DB_HOST ?? 'localhost',
-    port: Number(process.env.DB_PORT ?? 5432),
-    user: process.env.DB_USER ?? 'postgres',
-    password: process.env.DB_PASSWORD ?? '',
-    database: process.env.DB_NAME ?? 'wargasendut',
+    connectionString: process.env.DATABASE_URL ?? 'postgresql://postgres@localhost:5432/wargasendut',
   });
 
 if (process.env.NODE_ENV !== 'production') {
