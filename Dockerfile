@@ -20,7 +20,10 @@ COPY wargasendut/package*.json ./
 RUN npm ci --omit=dev
 
 COPY --from=builder /app/wargasendut/.next ./.next
-COPY wargasendut/public ./public
+
+# Create public folder if it doesn't exist
+RUN mkdir -p public
+COPY wargasendut/public ./public || true
 
 EXPOSE 3000
 
