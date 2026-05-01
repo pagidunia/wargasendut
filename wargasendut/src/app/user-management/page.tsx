@@ -197,6 +197,7 @@ export default function UserManagement() {
               <div style={{ marginBottom: '12px' }}>
                 <label>Role</label>
                 <select value={editForm.rolelogin} onChange={(e) => setEditForm({ ...editForm, rolelogin: e.target.value })}>
+                  <option>Admin</option>
                   <option>Warga</option>
                   <option>Ketua RT</option>
                   <option>Wakil Ketua RT</option>
