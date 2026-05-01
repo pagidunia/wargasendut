@@ -77,6 +77,10 @@ export default function Dashboard() {
   if (error) return <div>Error: {error}</div>;
   if (!data) return null;
 
+  const limitedRoles = ['Warga', 'Ketua RT', 'Wakil Ketua RT', 'Sekretaris', 'Penasehat RT', 'Koordinator Gang'];
+  const filteredNav = limitedRoles.includes(data.userRole)
+    ? NAV_ITEMS.filter((item) => ['ringkasan', 'profile'].includes(item.key))
+    : NAV_ITEMS;
 
   return (
     <div className="dashboard">
@@ -87,7 +91,7 @@ export default function Dashboard() {
         </div>
 
         <nav className="sidebar-nav">
-          {NAV_ITEMS.map((item) => (
+          {filteredNav.map((item) => (
             <button
               key={item.key}
               className="nav-item"
