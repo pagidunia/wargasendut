@@ -78,9 +78,13 @@ export default function Dashboard() {
   if (!data) return null;
 
   const limitedRoles = ['Warga', 'Ketua RT', 'Wakil Ketua RT', 'Sekretaris', 'Penasehat RT', 'Koordinator Gang'];
-  const filteredNav = limitedRoles.includes(data.userRole)
-    ? NAV_ITEMS.filter((item) => ['ringkasan', 'profile'].includes(item.key))
-    : NAV_ITEMS;
+  let filteredNav = NAV_ITEMS;
+
+  if (limitedRoles.includes(data.userRole)) {
+    filteredNav = NAV_ITEMS.filter((item) => ['ringkasan', 'profile'].includes(item.key));
+  } else if (data.userRole === 'Bendahara') {
+    filteredNav = NAV_ITEMS.filter((item) => ['ringkasan', 'iuran', 'profile'].includes(item.key));
+  }
 
   return (
     <div className="dashboard">
