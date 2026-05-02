@@ -169,44 +169,48 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="card">
-          <h2>Status Pembayaran — Visual</h2>
-          <p>Persentase warga yang sudah dan belum membayar iuran</p>
-          <IuranRadialChart
-            terbayar={data.stats.terbayar}
-            tertunggak={data.stats.tertunggak}
-            total={data.stats.totalWarga}
-          />
-        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+          {/* Left: Chart */}
+          <div className="card">
+            <h2>Status Pembayaran — Visual</h2>
+            <p>Persentase warga yang sudah dan belum membayar iuran</p>
+            <IuranRadialChart
+              terbayar={data.stats.terbayar}
+              tertunggak={data.stats.tertunggak}
+              total={data.stats.totalWarga}
+            />
+          </div>
 
-        <div className="card">
-          <h2>Daftar iuran warga</h2>
+          {/* Right: Table */}
+          <div className="card">
+            <h2>Daftar iuran warga</h2>
 
-          <div className="table-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  <th>Nama Warga</th>
-                  <th>Status iuran</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.warga.map((warga, i) => (
-                  <tr key={i}>
-                    <td>
-                      {warga.namawarga}
-                    </td>
-                    <td>
-                      {warga.status === 'lunas' ? (
-                        <span className="badge badge-success">✓ Lunas</span>
-                      ) : (
-                        <span className="badge badge-danger">● Belum bayar</span>
-                      )}
-                    </td>
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nama Warga</th>
+                    <th>Status iuran</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {data.warga.map((warga, i) => (
+                    <tr key={i}>
+                      <td>
+                        {warga.namawarga}
+                      </td>
+                      <td>
+                        {warga.status === 'lunas' ? (
+                          <span className="badge badge-success">✓ Lunas</span>
+                        ) : (
+                          <span className="badge badge-danger">● Belum bayar</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </main>
