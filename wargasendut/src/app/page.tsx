@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import IuranRadialChart from '@/components/IuranRadialChart';
 
 const NAV_ITEMS = [
   { key: 'ringkasan', label: 'Ringkasan' },
@@ -166,6 +167,16 @@ export default function Dashboard() {
               <div className="stat-subtext">perlu tindakan</div>
             </div>
           </div>
+        </div>
+
+        <div className="card">
+          <h2>Status Pembayaran — Visual</h2>
+          <p>Persentase warga yang sudah dan belum membayar iuran</p>
+          <IuranRadialChart
+            terbayar={data.stats.terbayar}
+            tertunggak={data.stats.tertunggak}
+            total={data.stats.totalWarga}
+          />
         </div>
 
         <div className="card">
